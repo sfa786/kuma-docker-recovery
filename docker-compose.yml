@@ -1,0 +1,32 @@
+services:
+  kuma-docker-recovery:
+    build:
+      context: .
+    image: kuma-docker-recovery:local
+    container_name: kuma-docker-recovery
+    restart: unless-stopped
+    environment:
+      CONFIG_FILE: /config/config.json
+      TZ: Asia/Kolkata
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${app_data}/kuma-docker-recovery:/config:ro
+    networks:
+      - external
+    # Keep this service internal; no Traefik router is required.
+    expose:
+      - "8080"
+    deploy:
+      resources:
+        limits:
+          memory: 48M
+          cpus: "0.25"
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "3"
+
+networks:
+  external:
+    external: true

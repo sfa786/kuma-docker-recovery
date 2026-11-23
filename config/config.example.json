@@ -1,0 +1,16 @@
+{
+  "listen_address": ":8080",
+  "webhook_token": "REPLACE_WITH_A_LONG_RANDOM_SECRET",
+  "docker_socket": "/var/run/docker.sock",
+  "docker_api_version": "v1.41",
+  "restart_delay_seconds": 0,
+  "cooldown_seconds": 300,
+  "max_restarts": 3,
+  "window_seconds": 1800,
+  "containers": {
+    "Radarr": "radarr",
+    "Seerr": "seerr",
+    "qBittorrent": "qbittorrent",
+    "Vaultwarden": "vaultwarden"
+  }
+}
